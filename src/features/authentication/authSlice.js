@@ -4,6 +4,7 @@ const initialState = {
   isLoggedIn: false,
   userInfo: {
     id: "",
+    name: "",
     workspace_id: "",
     role: "",
   },

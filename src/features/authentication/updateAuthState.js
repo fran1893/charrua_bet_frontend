@@ -11,6 +11,7 @@ export const updateAuthStoreStateLogIn = (token) => {
   store.dispatch(
     setUserInfo({
       id: myDecodedToken.user_id,
+      name: myDecodedToken.user_name,
       workspace_id: myDecodedToken.user_workspace,
       role: myDecodedToken.user_role,
     })
@@ -26,6 +27,7 @@ export const updateAuthStoreStateLogOut = () => {
     setUserInfo({
       id: "",
       name: "",
+      workspace_id: "",
       role: "",
     })
   );
