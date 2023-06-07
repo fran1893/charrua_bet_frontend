@@ -1,0 +1,62 @@
+.Home {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .banner {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+        border-radius: 40px;
+        width: 80%;
+    }
+
+    .games {
+        color: white;
+        .game-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 10px;
+            background: rgba(8, 145, 178, 0.4);
+            border-radius: 40px;
+            .game {
+                display: flex;
+                justify-content: center;
+                width: 80%;
+            }
+            .home-team {
+                margin-right: 10px;
+            }
+            .home-team,
+            .away-team {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 188px;
+                background-color: #0c4a6e;
+                margin: 10px;
+            }
+            .home-team {
+                padding-right: 10px;
+            }
+            .away-team {
+                padding-left: 10px;
+            }
+            .away-logo,
+            .home-logo {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        }
+    }
+}
+
+// @media (max-width: 458px) {
+//     .Home {
+//         .home-team,
+//         .away-team {
+//             min-width: 100px;
+//         }
+//     }
+// }

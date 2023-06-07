@@ -57,7 +57,7 @@ export default function Header() {
             </Nav>
             {!isLoggedIn && (
               <Nav>
-                <NavLink className="nav-link">Iniciar sesion</NavLink>
+                <NavLink className="nav-link">Iniciar sesión</NavLink>
                 {/* <NavLink className="nav-link" to="/register">
                   Registrarse
                 </NavLink> */}
