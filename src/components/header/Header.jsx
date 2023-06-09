@@ -42,10 +42,6 @@ export default function Header() {
     setShowSignIn(true);
   };
 
-  // const handleHideSignIn = () => {
-  //   setShowSignIn(false);
-  // };
-
   const handleCloseForm = (e) => {
     e.preventDefault();
     setShowSignIn(false);
