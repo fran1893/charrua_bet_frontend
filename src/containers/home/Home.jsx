@@ -78,6 +78,7 @@ export default function Home() {
                   </div>
                   {game.home_team}
                 </div>
+                vs
                 <div className="away-team">
                   {game.away_team}{" "}
                   <div className="away-logo">
