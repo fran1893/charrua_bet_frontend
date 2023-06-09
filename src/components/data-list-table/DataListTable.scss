@@ -1,0 +1,86 @@
+.DataListTable {
+    color: white;
+    cursor: default;
+
+    .tableTitle {
+        font-size: 1.3em;
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+    }
+    .mobileTableTitle {
+        display: none;
+    }
+
+    table {
+        border-collapse: collapse;
+        background-color: #075985;
+        text-align: center;
+        th,
+        td {
+            border: 1px solid black;
+            padding: 0.4em;
+        }
+        tbody {
+            tr {
+              &:nth-child(odd) {
+                background-color: #084465;; // Color de fondo para filas impares
+              }
+            }
+          }
+    }
+
+    @media (max-width: 600px) {
+        body {
+            height: 100%;
+        }
+
+        table {
+            border: 0;
+        }
+
+        .mobileTableTitle {
+            display: block;
+            font-size: 40px;
+            font-weight: bold;
+            padding-top: 0.5em;
+            padding-bottom: 0.5em;
+        }
+
+        table thead {
+            border: none;
+            height: 1px;
+            margin: -1px;
+            overflow: hidden;
+            padding: 0;
+            position: absolute;
+            width: 1px;
+        }
+
+        table tr {
+            border-bottom: 3px solid #0c0c0c;
+            display: block;
+        }
+
+        table td {
+            border-bottom: 1px solid #ddd;
+            display: block;
+            font-size: 0.8em;
+            text-align: right;
+        }
+
+        tfoot tr {
+            border-bottom: none;
+        }
+
+        table td::before {
+            content: attr(data-label);
+            float: left;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        table td:last-child {
+            border-bottom: 0;
+        }
+    }
+}
