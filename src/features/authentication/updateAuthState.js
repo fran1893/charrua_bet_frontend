@@ -14,6 +14,7 @@ export const updateAuthStoreStateLogIn = (token) => {
       name: myDecodedToken.user_name,
       workspace_id: myDecodedToken.user_workspace,
       role: myDecodedToken.user_role,
+      balance: myDecodedToken.user_balance,
     })
   );
   store.dispatch(setToken(token));
@@ -29,6 +30,7 @@ export const updateAuthStoreStateLogOut = () => {
       name: "",
       workspace_id: "",
       role: "",
+      balance: "",
     })
   );
   store.dispatch(setToken(""));

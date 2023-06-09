@@ -7,6 +7,7 @@ const initialState = {
     name: "",
     workspace_id: "",
     role: "",
+    balance: "",
   },
   userToken: "",
 };
