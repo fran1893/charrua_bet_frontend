@@ -12,24 +12,28 @@
         margin-top: 2em;
         .forms-wrapper {
             color: white;
+            .form-title {
+                text-align: center;
+                font-weight: 700;
+                background-color: #082f49;
+                padding: 1em;
+                width: 100%;
+            }
             table {
                 text-align: center;
-                th{
-                    background-color: #082F49;
-                    padding: 1em;
-                }
-                tbody{
+
+                tbody {
                     tr {
-                        td{
+                        td {
                             padding: 0.5em;
                         }
                         &:nth-child(odd) {
-                          background-color: #075985; // Color de fondo para filas impares
+                            background-color: #075985; // Color de fondo para filas impares
                         }
                         &:nth-child(even) {
                             background-color: #084465; // Color de fondo para filas pares
-                          }
-                      }
+                        }
+                    }
                 }
             }
 
@@ -38,6 +42,14 @@
                 flex-direction: column;
                 align-items: center;
                 margin-bottom: 2em;
+            }
+            .btn-form {
+                color: rgb(215, 212, 212);
+                margin-top: 1em;
+                background-color: #b3185b;
+                &:hover {
+                    color: white;
+                }
             }
         }
         .DataListTable {
