@@ -240,7 +240,7 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                  <Button variant="warning">Apostar</Button>
+                  <Button variant="warning" type="submit">Apostar</Button>
                 </form>
               ))}
             </div>
