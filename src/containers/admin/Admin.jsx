@@ -19,9 +19,11 @@ export default function Admin() {
   const authState = useSelector((state) => state.auth);
   const isAdmin = authState.userInfo.role == "admin";
   const [playerId, setPlayerId] = useState();
+  const [deletePlayerId, setDeletePlayerId] = useState();
   const [newBalance, setNewBalance] = useState();
   const [newUserData, setNewUserData] = useState({});
   const [addUserFormValues, setAddUserFormValues] = useState(formInitialValues);
+  const [showDelete, setShowDelete] = useState(false);
 
   useEffect(() => {
     if (isAdmin) {
@@ -30,6 +32,8 @@ export default function Admin() {
   }, []);
 
   // FUNCTIONS
+
+  //   Get players info function
   const getPlayersInfo = async (token) => {
     try {
       const response = await playerService.getPlayersInfo(token);
@@ -45,7 +49,7 @@ export default function Admin() {
       console.log(error);
     }
   };
-
+  //   Update balance function
   const updateBalance = async (token, newBalance, playerId) => {
     try {
       const updateBalance = await playerService.updateBalance(
@@ -57,7 +61,7 @@ export default function Admin() {
       console.log(error);
     }
   };
-
+  // Add player function
   const addPlayer = async (token, credentials) => {
     try {
       await authService.registerPlayer(token, credentials);
@@ -65,17 +69,28 @@ export default function Admin() {
       console.log(error);
     }
   };
+  // Delete player function
+  const deletePlayer = async (token, playerId) => {
+    try {
+      await playerService.deletePlayer(token, playerId);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   // HANDLERS
+
+  //   Handle balance changes on input
   const handleBalanceChange = (e) => {
     const { value } = e.target;
     setNewBalance(value);
   };
-
+  // Handle player id changes on input for adding balance
   const handlePlayerIdChange = (e) => {
     const { value } = e.target;
     setPlayerId(value);
   };
+  //   Handle add user form changes on input
   const handleAddUserFormChange = (e) => {
     const { name, value } = e.target;
     setAddUserFormValues({
@@ -83,17 +98,31 @@ export default function Admin() {
       [name]: value,
     });
   };
+  // Handle click on users list
+  const handleClick = (e) => {
+    const { dataId } = e.currentTarget.dataset;
+    setDeletePlayerId(dataId);
+    setShowDelete(true)
+  };
 
+  // Handle update balance function
   const handleUpdateBalance = async (e) => {
     e.preventDefault();
     await updateBalance(authState.userToken, newBalance, playerId);
     getPlayersInfo(authState.userToken);
   };
-
+  //   Handle add player function
   const handleAddPlayer = async (e) => {
     e.preventDefault();
     await addPlayer(authState.userToken, addUserFormValues);
     getPlayersInfo(authState.userToken);
+    setAddUserFormValues(formInitialValues)
+  };
+  //   Handle delete player function
+  const handleDeletePlayer = async () => {
+    await deletePlayer(authState.userToken, deletePlayerId);
+    getPlayersInfo(authState.userToken);
+    setShowDelete(false)
   };
 
   return (
@@ -200,12 +229,20 @@ export default function Admin() {
             </Button>
           </form>
         </div>
-        <DataListTable
-          data={users}
-          title="Lista de usuarios"
-          headers={["ID Jugador", "Nombre", "Apellido", "email", "Balance"]}
-          attributes={["id", "name", "lastname", "email", "balance"]}
-        />
+        <div className="users-list-wrapper">
+          <DataListTable
+            data={users}
+            title="Lista de usuarios"
+            headers={["ID Jugador", "Nombre", "Apellido", "email", "Balance"]}
+            attributes={["id", "name", "lastname", "email", "balance"]}
+            onChange={handleClick}
+          />
+          {showDelete && (
+            <Button variant="danger" onClick={handleDeletePlayer}>
+              Eliminar jugador, ID Jugador {deletePlayerId}
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   );

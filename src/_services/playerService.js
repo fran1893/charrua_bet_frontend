@@ -34,4 +34,14 @@ playerService.updateBalance = async (token, newBalance, playerId) => {
   ).data;
 };
 
+playerService.deletePlayer = async (token, playerId) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  return (await axios.delete(global.BASE_URL + `/player/delete/${playerId}`, config)).data;
+};
+
 export default playerService;
