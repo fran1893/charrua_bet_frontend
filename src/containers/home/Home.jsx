@@ -14,6 +14,7 @@ import fifa_logo from "../../assets/sports-nav-images/FIFA.png";
 import american_football_logo from "../../assets/sports-nav-images/american-football.png";
 import baseball_logo from "../../assets/sports-nav-images/baseball.png";
 import esports_logo from "../../assets/sports-nav-images/esports.png";
+import Button from "react-bootstrap/Button";
 import "./Home.scss";
 
 export default function Home() {
@@ -239,7 +240,7 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                  <button>Apostar</button>
+                  <Button variant="warning">Apostar</Button>
                 </form>
               ))}
             </div>
