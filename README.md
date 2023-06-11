@@ -62,6 +62,12 @@ Bet history page (player)
 
 <img src="src/assets/screenshots/bet-history-page.png">
 
+Video showcase
+<video width="640" height="480" controls>
+  <source src="src/assets/screenshots/video-showcase.mp4" type="video/mp4">
+  Tu navegador no soporta el elemento de video.
+</video>
+
 <a name="tools"></a>
 
 ## Stack 🔧
