@@ -16,11 +16,11 @@ export default function DataListTable({
         <table>
           <thead>
             <tr>
-              <th colSpan={headers.length}>
+              <th className="table-title-th" colSpan={headers.length}>
                 <div className="tableTitle">{title}</div>
               </th>
             </tr>
-            <tr>
+            <tr className="title-headers">
               {headers.map((th, index) => (
                 <th scope="col" key={index}>
                   {th}

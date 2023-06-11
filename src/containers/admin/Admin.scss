@@ -1,0 +1,54 @@
+.Admin {
+    min-height: 100vh;
+    .admin-title {
+        text-align: center;
+        color: white;
+        background-color: #075985;
+        font-weight: 700;
+    }
+    .admin-content-wrapper {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 2em;
+        .forms-wrapper {
+            color: white;
+            table {
+                text-align: center;
+                th{
+                    background-color: #082F49;
+                    padding: 1em;
+                }
+                tbody{
+                    tr {
+                        td{
+                            padding: 0.5em;
+                        }
+                        &:nth-child(odd) {
+                          background-color: #075985; // Color de fondo para filas impares
+                        }
+                        &:nth-child(even) {
+                            background-color: #084465; // Color de fondo para filas pares
+                          }
+                      }
+                }
+            }
+
+            form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                margin-bottom: 2em;
+            }
+        }
+        .DataListTable {
+            thead {
+                .table-title-th {
+                    background-color: #082f49;
+                }
+                .title-headers {
+                    background-color: #b3185b;
+                }
+            }
+        }
+    }
+}
