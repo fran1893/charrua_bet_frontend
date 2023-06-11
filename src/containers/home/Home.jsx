@@ -112,7 +112,7 @@ export default function Home() {
     }
   };
 
-  const handleBetSubmit = (e) => {
+  const handleBetSubmit = async (e) => {
     e.preventDefault();
     const { paymentId, teamId } = e.currentTarget.dataset;
 
@@ -124,7 +124,7 @@ export default function Home() {
         payment_id: paymentId,
       };
 
-      makeBet(authState.userToken, body);
+      await makeBet(authState.userToken, body);
       navigate("/bet-history");
     } else if (e.currentTarget.id == 1 && amount2Value > 0) {
       const body = {
@@ -134,7 +134,7 @@ export default function Home() {
         payment_id: paymentId,
       };
 
-      makeBet(authState.userToken, body);
+      await makeBet(authState.userToken, body);
       navigate("/bet-history");
     }
   };

@@ -17,7 +17,7 @@ export default function BetHistoryPlayer() {
     if (isLoggedIn && isPlayer) {
       getBetHistoryPlayer(authState.userToken);
     }
-  }, [betHistory]);
+  }, []);
 
   // FUNCTIONS
   const getBetHistoryPlayer = async (token) => {
