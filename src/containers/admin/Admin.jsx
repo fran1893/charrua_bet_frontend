@@ -7,12 +7,21 @@ import "./Admin.scss";
 import Button from "react-bootstrap/Button";
 
 export default function Admin() {
+  const formInitialValues = {
+    name: "",
+    email: "",
+    lastname: "",
+    password: "",
+  };
+
   // HOOKS
   const [users, setUsers] = useState([]);
   const authState = useSelector((state) => state.auth);
   const isAdmin = authState.userInfo.role == "admin";
   const [playerId, setPlayerId] = useState();
   const [newBalance, setNewBalance] = useState();
+  const [newUserData, setNewUserData] = useState({});
+  const [addUserFormValues, setAddUserFormValues] = useState(formInitialValues);
 
   useEffect(() => {
     if (isAdmin) {
@@ -49,6 +58,14 @@ export default function Admin() {
     }
   };
 
+  const addPlayer = async (token, credentials) => {
+    try {
+      await authService.registerPlayer(token, credentials);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // HANDLERS
   const handleBalanceChange = (e) => {
     const { value } = e.target;
@@ -59,10 +76,23 @@ export default function Admin() {
     const { value } = e.target;
     setPlayerId(value);
   };
+  const handleAddUserFormChange = (e) => {
+    const { name, value } = e.target;
+    setAddUserFormValues({
+      ...addUserFormValues,
+      [name]: value,
+    });
+  };
 
   const handleUpdateBalance = async (e) => {
     e.preventDefault();
     await updateBalance(authState.userToken, newBalance, playerId);
+    getPlayersInfo(authState.userToken);
+  };
+
+  const handleAddPlayer = async (e) => {
+    e.preventDefault();
+    await addPlayer(authState.userToken, addUserFormValues);
     getPlayersInfo(authState.userToken);
   };
 
@@ -72,7 +102,7 @@ export default function Admin() {
       <div className="admin-content-wrapper">
         <div className="forms-wrapper">
           {/* ADD PLAYER FORM */}
-          <form>
+          <form onSubmit={handleAddPlayer}>
             <span className="form-title">Agregar nuevo usuario</span>
             <table>
               <tbody>
@@ -81,7 +111,12 @@ export default function Admin() {
                     <label>Nombre:</label>
                   </td>
                   <td>
-                    <input type="text" />
+                    <input
+                      type="text"
+                      name="name"
+                      value={addUserFormValues.name}
+                      onChange={handleAddUserFormChange}
+                    />
                   </td>
                 </tr>
                 <tr>
@@ -89,7 +124,25 @@ export default function Admin() {
                     <label>Apellido:</label>
                   </td>
                   <td>
-                    <input type="text" />
+                    <input
+                      type="text"
+                      name="lastname"
+                      value={addUserFormValues.lastname}
+                      onChange={handleAddUserFormChange}
+                    />
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label>Email:</label>
+                  </td>
+                  <td>
+                    <input
+                      type="email"
+                      name="email"
+                      value={addUserFormValues.email}
+                      onChange={handleAddUserFormChange}
+                    />
                   </td>
                 </tr>
                 <tr>
@@ -97,12 +150,17 @@ export default function Admin() {
                     <label>Contraseña:</label>
                   </td>
                   <td>
-                    <input type="password" />
+                    <input
+                      type="password"
+                      name="password"
+                      value={addUserFormValues.password}
+                      onChange={handleAddUserFormChange}
+                    />
                   </td>
                 </tr>
               </tbody>
             </table>
-            <Button className="btn-form" variant="custom">
+            <Button className="btn-form" variant="custom" type="submit">
               Crear usuario
             </Button>
           </form>

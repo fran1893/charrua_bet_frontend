@@ -12,5 +12,23 @@ authService.login = async (credentials) => {
   return (await axios.post(global.BASE_URL + "/auth/login", body)).data;
 };
 
+authService.registerPlayer = async (token, credentials) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+
+  const body = {
+    name: credentials.name,
+    email: credentials.email,
+    lastname: credentials.lastname,
+    password: credentials.password,
+  };
+
+  return (
+    await axios.post(global.BASE_URL + "/auth/register", body, config)
+  ).data;
+};
 
 export default authService;
