@@ -53,6 +53,7 @@
             }
         }
         .DataListTable {
+            margin-bottom: 3em;
             thead {
                 .table-title-th {
                     background-color: #082f49;
@@ -61,6 +62,11 @@
                     background-color: #b3185b;
                 }
             }
+        }
+
+        .users-list-wrapper{
+            display: flex;
+            flex-direction: column;
         }
     }
 }
