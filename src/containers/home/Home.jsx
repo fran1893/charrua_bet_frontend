@@ -97,9 +97,11 @@ export default function Home() {
   // HANDLRES
   const handleShowPayments = (e) => {
     const { dataId } = e.currentTarget.dataset;
-    setGameId(dataId);
-    getPayments(authState.userToken, dataId);
-    setShowPayments(true);
+    if (isPlayer) {
+      setGameId(dataId);
+      getPayments(authState.userToken, dataId);
+      setShowPayments(true);
+    }
   };
 
   const handleAmountChange = (e) => {
@@ -207,41 +209,43 @@ export default function Home() {
         </div>
       </div>
       {/* BET SHEET */}
-      <div className="bet-sheet">
-        <p>HOJA DE APUESTAS</p>
-        {showPayments && (
-          <div className="payments">
-            {payments.map((payment, index) => (
-              <form
-                key={payment.id}
-                id={index}
-                data-payment-id={payment.id}
-                data-team-id={payment.team_id}
-                onSubmit={handleBetSubmit}
-              >
-                <div className="payment">
-                  <div className="payment-team">
-                    <img src={payment.team_shield} /> {payment.team_name}
-                  </div>
-                  <div className="cuota">{payment.amount}</div>
-                  <div className="bet">
-                    <div className="form-group">
-                      <label>Cantidad a apostar</label>
-                      <input
-                        id={index}
-                        type="number"
-                        name={`amount-${payment.id}`}
-                        onChange={handleAmountChange}
-                      />
+      {isPlayer && (
+        <div className="bet-sheet">
+          <p>HOJA DE APUESTAS</p>
+          {showPayments && (
+            <div className="payments">
+              {payments.map((payment, index) => (
+                <form
+                  key={payment.id}
+                  id={index}
+                  data-payment-id={payment.id}
+                  data-team-id={payment.team_id}
+                  onSubmit={handleBetSubmit}
+                >
+                  <div className="payment">
+                    <div className="payment-team">
+                      <img src={payment.team_shield} /> {payment.team_name}
+                    </div>
+                    <div className="cuota">{payment.amount}</div>
+                    <div className="bet">
+                      <div className="form-group">
+                        <label>Cantidad a apostar</label>
+                        <input
+                          id={index}
+                          type="number"
+                          name={`amount-${payment.id}`}
+                          onChange={handleAmountChange}
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-                <button>Apostar</button>
-              </form>
-            ))}
-          </div>
-        )}
-      </div>
+                  <button>Apostar</button>
+                </form>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
     </div>
   );
 }
