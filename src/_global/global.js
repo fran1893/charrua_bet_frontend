@@ -1,4 +1,4 @@
 export const global = {
-    BASE_URL: "http://localhost:3000",
+    BASE_URL: "https://charruabetbackend-production.up.railway.app/",
     TOKEN_KEY: "auth-token",
   };
