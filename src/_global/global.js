@@ -1,4 +1,4 @@
 export const global = {
-    BASE_URL: "mysql://root:4651HCgbhFDbgA244BG1FfEDF4HEah-3@monorail.proxy.rlwy.net:53078/railway",
+    BASE_URL: "https://charrua-bet-backend-dev-nbhp.4.us-1.fl0.io",
     TOKEN_KEY: "auth-token",
   };
