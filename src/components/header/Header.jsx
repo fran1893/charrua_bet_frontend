@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from "react";
 import { NavLink, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -93,7 +94,6 @@ export default function Header() {
   return (
     <div className="Header">
       <Navbar
-        className="bg-gradient"
         collapseOnSelect
         expand="lg"
         variant="dark"
